@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ubuntu-sleep
+  name: ubuntu-sleep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-sleep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ubuntu-sleep
+    spec:
+      containers:
+      - image: ubuntu:latest
+        name: ubuntu
+        command:
+          - "sleep"
+        args:
+          - "5"
+        resources: {}
+status: {}

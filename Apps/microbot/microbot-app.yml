@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: microbot-app
+  name: microbot-app
+  namespace: microbot-namespace
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: microbot-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: microbot-app
+    spec:
+      containers:
+      - image: dontrebootme/microbot:v1
+        name: microbot
+        resources: {}
+status: {}

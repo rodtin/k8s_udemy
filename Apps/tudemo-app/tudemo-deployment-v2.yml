@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: tudemo-deployment
+  name: tudemo-deployment
+  namespace: tudemo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tudemo-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: tudemo-deployment
+    spec:
+      containers:
+      - image: nigelpoulton/tu-demo:v1
+        name: tu-demo
+        resources: {}
+status: {}

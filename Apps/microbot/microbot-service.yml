@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: microbot-service
+  name: microbot-service
+  namespace: microbot-namespace
+spec:
+  ports:
+  - name: 80-80
+    nodePort: 30000
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: microbot-app
+  type: NodePort
+status:
+  loadBalancer: {}

@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2020-10-02T12:16:40Z"
+  labels:
+    app: microbot
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app: {}
+      f:spec:
+        f:externalTrafficPolicy: {}
+        f:ports:
+          .: {}
+          k:{"port":80,"protocol":"TCP"}:
+            .: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+        f:sessionAffinity: {}
+        f:type: {}
+    manager: kubectl-expose
+    operation: Update
+    time: "2020-10-02T12:16:40Z"
+  name: microbot-service
+  namespace: default
+  resourceVersion: "10557"
+  selfLink: /api/v1/namespaces/default/services/microbot-service
+  uid: 08a25233-c447-4905-bc87-b1c4f7dbb9bb
+spec:
+  clusterIP: 10.106.12.7
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 31981
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: microbot
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

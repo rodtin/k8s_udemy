@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ubuntu-orig
+  name: ubuntu-orig
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-orig
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ubuntu-orig
+    spec:
+      containers:
+      - image: ubuntu:latest
+        name: ubuntu
+        resources: {}
+status: {}

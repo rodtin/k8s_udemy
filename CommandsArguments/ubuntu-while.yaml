@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ubuntu-while
+  name: ubuntu-while
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-while
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ubuntu-while
+    spec:
+      containers:
+      - image: ubuntu:latest
+        name: ubuntu
+        command:
+          [ "bash", "-c" ]
+        args:
+          [ "while true; do date; sleep 3; done" ]
+        resources: {}
+status: {}

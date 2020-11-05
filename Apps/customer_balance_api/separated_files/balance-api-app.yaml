@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: balance-api-app
+  name: balance-api-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: balance-api-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: balance-api-app
+    spec:
+      containers:
+      - image: swarmgs/balance
+        name: balance-api-container
+        envFrom:
+          - configMapRef:
+              name: balance-api-properties
+        resources: {}
+status: {}

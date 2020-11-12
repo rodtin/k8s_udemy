@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: payroll
+  name: payroll
+  namespace: default
+spec:
+  containers:
+  - env:
+    - name: APP_NAME
+      value: Payroll Application
+    - name: BG_COLOR
+      value: blue
+    image: kodekloud/webapp-conntest
+    imagePullPolicy: IfNotPresent
+    name: payroll
+    ports:
+    - containerPort: 8080
+      protocol: TCP

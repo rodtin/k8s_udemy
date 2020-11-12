@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mysql-policy-deny
+  namespace: wordpress
+spec:
+  podSelector:
+    matchLabels:
+      app: mysql-app
+  policyTypes:
+  - Ingress
+  - Egress

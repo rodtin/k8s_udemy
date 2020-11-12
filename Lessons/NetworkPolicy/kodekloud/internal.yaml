@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: internal
+  name: internal
+  namespace: default
+spec:
+  containers:
+  - env:
+    - name: APP_NAME
+      value: Internal Facing Application
+    - name: BG_COLOR
+      value: blue
+    image: kodekloud/webapp-conntest
+    imagePullPolicy: IfNotPresent
+    name: internal
+    ports:
+    - containerPort: 8080
+      protocol: TCP

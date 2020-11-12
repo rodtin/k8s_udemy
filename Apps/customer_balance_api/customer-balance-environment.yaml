@@ -13,7 +13,7 @@ metadata:
     app: customer-api-app
   name: customer-api-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: customer-api-app
@@ -57,7 +57,7 @@ metadata:
     app: balance-api-app
   name: balance-api-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: balance-api-app
@@ -67,6 +67,7 @@ spec:
       creationTimestamp: null
       labels:
         app: balance-api-app
+        role: frontend
     spec:
       containers:
       - image: swarmgs/balance
@@ -96,3 +97,23 @@ spec:
   type: NodePort
 status:
   loadBalancer: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: customer-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: customer-api-app
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - protocol: TCP
+      port: 3000

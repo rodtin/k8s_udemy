@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: payroll-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      name: payroll
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          name: internal
+    - podSelector:
+        matchLabels:
+          name: external
+    ports:
+    - protocol: TCP
+      port: 8080
+
+
+  egress:
+  - to:
+    ports:
+    - protocol: TCP
+      port: 53
+    - protocol: UDP
+      port: 53

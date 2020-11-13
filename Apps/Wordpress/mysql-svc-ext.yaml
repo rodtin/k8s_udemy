@@ -3,7 +3,7 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: mysql-svc
+    app: mysql-svc-ext
   name: mysql-service-external
   namespace: wordpress
 spec:
@@ -11,6 +11,7 @@ spec:
   - port: 8080
     protocol: TCP
     targetPort: 3306
+    nodePort: 30066
   selector:
     app: mysql-app
   type: NodePort

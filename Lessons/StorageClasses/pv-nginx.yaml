@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nginx
+  labels:
+    type: local
+spec:
+  storageClassName: sc-nginx
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/eroesas/kubernetes/Lessons/StorageClasses/Volumes"

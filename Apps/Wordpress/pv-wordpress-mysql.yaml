@@ -8,8 +8,8 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 200Mi
+    storage: 500Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/kubernetes/Apps/Wordpress/Volumes/mysql"
+    path: "/home/eroesas/kubernetes/Apps/Wordpress/Volumes/mysql"

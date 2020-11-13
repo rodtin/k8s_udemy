@@ -3,7 +3,7 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: mysql-app
+    app: mysql-svc
   name: mysql-service
   namespace: wordpress
 spec:

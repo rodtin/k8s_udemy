@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-with-sc
+  name: nginx-with-sc
+spec:
+  volumes:
+    - name: nginx-vol
+      persistentVolumeClaim:
+        claimName: pvc-nginx
+  containers:
+  - image: nginx
+    name: nginx-with-sc
+    volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: nginx-vol
+  nodeSelector:
+    preferred: storage 
+

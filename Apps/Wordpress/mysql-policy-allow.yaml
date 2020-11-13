@@ -18,3 +18,13 @@ spec:
     ports:
     - protocol: TCP
       port: 3306
+  - from:
+    - podSelector:
+        matchLabels:
+          app: mysql-svc-ext
+    ports:
+    - protocol: TCP
+      port: 8080
+  - from:
+    - ipBlock:
+        cidr: 192.168.56.0/24

@@ -2,11 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: mysql-policy-allow
-  namespace: wordpress
 spec:
   podSelector:
     matchLabels:
       app: mysql-app
+      tier: db
+      environment: wordpress
   policyTypes:
   - Ingress
   - Egress
@@ -15,13 +16,15 @@ spec:
     - podSelector:
         matchLabels:
           app: wordpress-app
+          tier: app
+          environment: wordpress
     ports:
     - protocol: TCP
       port: 3306
   - from:
     - podSelector:
         matchLabels:
-          app: mysql-svc-ext
+          app: mysql-service
     ports:
     - protocol: TCP
       port: 8080

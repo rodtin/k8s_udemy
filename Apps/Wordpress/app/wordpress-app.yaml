@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: wordpress-app
+    tier: app
+    environment: wordpress
+  name: wordpress-app
+  namespace: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress-app
+      tier: app
+      environment: wordpress
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: wordpress-app
+        tier: app
+        environment: wordpress
+    spec:
+      containers:
+      - image: wordpress
+        name: wordpress
+        ports: 
+          - containerPort: 80
+        envFrom:
+        - configMapRef: 
+            name: wordpress-configmap
+        env:
+          - name: WORDPRESS_DB_USER
+            valueFrom: 
+              secretKeyRef: 
+                name: wordpress-secret
+                key: username
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom: 
+              secretKeyRef:
+                name: wordpress-secret
+                key: password
+      nodeSelector:
+        preferred: app

@@ -2,7 +2,6 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-wordpress-mysql
-  namespace: wordpress
   labels:
     type: pv-wordpress-mysql
 spec:
@@ -12,4 +11,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/home/eroesas/kubernetes/PersistentVolumes/Volumes/mysql"
+    path: "/home/eroesas/PersistentVolumes/Volumes/mysql"

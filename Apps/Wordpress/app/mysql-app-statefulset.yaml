@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mysql-app
+    tier: db
+    environment: wordpress
+  name: mysql-app
+spec:
+  serviceName: mysql-service 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-app
+      tier: db
+      environment: wordpress
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mysql-app
+        tier: db
+        environment: wordpress
+    spec:
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: pvc-wordpress-mysql
+      containers:
+      - image: mysql 
+        name: mysql-container
+        envFrom:
+        - configMapRef: 
+            name: mysql-configmap
+        env: 
+          - name: MYSQL_USER
+            valueFrom: 
+              secretKeyRef: 
+                name: mysql-secret-user
+                key: username
+          - name: MYSQL_PASSWORD
+            valueFrom: 
+              secretKeyRef:
+                name: mysql-secret-user
+                key: password
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret-root
+                key: password
+        volumeMounts:
+          - mountPath: "/var/lib/mysql"
+            name: mysql-persistent-storage      
+      nodeSelector: 
+        preferred: storage

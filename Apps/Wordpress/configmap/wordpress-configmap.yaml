@@ -1,0 +1,13 @@
+apiVersion: v1
+data:
+  WORDPRESS_DB_HOST: mysql-service.default.svc.cluster.local
+  WORDPRESS_DB_NAME: wordpress-db
+  WORDPRESS_TABLE_PREFIX: wp_
+  WORDPRESS_DEBUG: '1'
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: wordpress-configmap
+  namespace: wordpress
+  labels:
+    environment: wordpress

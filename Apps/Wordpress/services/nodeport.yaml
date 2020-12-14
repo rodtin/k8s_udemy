@@ -4,16 +4,18 @@ metadata:
   creationTimestamp: null
   labels:
     app: wordpress-app
-  name: wordpress-service-external
-  namespace: wordpress
+    environment: wordpress
+    tier: app
+  name: wordpress-app
 spec:
   ports:
   - port: 8080
     protocol: TCP
-    targetPort: 80
-    nodePort: 30988
+    targetPort: 8080
   selector:
     app: wordpress-app
+    environment: wordpress
+    tier: app
   type: NodePort
 status:
   loadBalancer: {}

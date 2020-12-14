@@ -3,9 +3,10 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: mysql-svc-int
-  name: mysql-service-internal
-  namespace: wordpress
+    app: mysql-service
+    tier: service
+    environment: wordpress
+  name: mysql-service
 spec:
   ports:
   - port: 3306
@@ -13,6 +14,8 @@ spec:
     targetPort: 3306
   selector:
     app: mysql-app
+    tier: db
+    environment: wordpress
   type: ClusterIP
 status:
   loadBalancer: {}
